@@ -1,0 +1,50 @@
+.foodForm {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin: 2rem auto;
+    max-width: 600px;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+    
+  }
+  
+  .foodForm  label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .foodForm  input[type="text"],
+  select,
+  input[type="number"] {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: #f2f2f2;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  
+  .foodForm > select {
+    appearance: none;
+  }
+  
+  .foodForm > button[type="submit"] {
+    background-color: #00c853;
+    color: #fff;
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .foodForm > button[type="submit"]:hover {
+    background-color: #009624;
+  }
+  
