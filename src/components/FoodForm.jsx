@@ -10,7 +10,9 @@ const FoodForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const food = { foodName, foodType, maxDeliveryTime };
-    localStorage.setItem('food', JSON.stringify(food));
+    const storedFoods = JSON.parse(localStorage.getItem("food") || "[]");
+    storedFoods.push(food);
+    localStorage.setItem('food', JSON.stringify(storedFoods));
     setFoodName('');
     setFoodType(foodTypes[0]);
     setMaxDeliveryTime('');

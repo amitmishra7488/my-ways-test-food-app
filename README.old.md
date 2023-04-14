@@ -1,1 +1,0 @@
-# my-ways-test-food-app

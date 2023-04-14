@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-
 export default function FoodItem() {
     const [foods, setFoods] = useState([]);
 
     useEffect(() => {
-        const storedFoods = JSON.parse(localStorage.getItem("foods") || "[]");
+        const storedFoods = JSON.parse(localStorage.getItem("food") || "[]");
         setFoods(storedFoods);
     }, []);
 
@@ -13,8 +12,8 @@ export default function FoodItem() {
     const [filterTime, setFilterTime] = useState("");
 
     const filteredFoods = foods.filter((food) => {
-        const passesTypeFilter = filterType ? food.type === filterType : true;
-        const passesTimeFilter = filterTime ? food.deliveryTime <= filterTime : true;
+        const passesTypeFilter = filterType ? food.foodType === filterType : true;
+        const passesTimeFilter = filterTime ? food.maxDeliveryTime <= filterTime : true;
         return passesTypeFilter && passesTimeFilter;
     });
 
@@ -23,7 +22,10 @@ export default function FoodItem() {
             <div className="filter-form">
                 <label>
                     Filter by Type:
-                    <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+                    <select
+                        value={filterType}
+                        onChange={(e) => setFilterType(e.target.value)}
+                    >
                         <option value="">All</option>
                         <option value="Delicious Food">Delicious Food</option>
                         <option value="Nutritious Food">Nutritious Food</option>
@@ -34,23 +36,28 @@ export default function FoodItem() {
                 </label>
                 <label>
                     Filter by Delivery Time:
-                    <input type="number" value={filterTime} onChange={(e) => setFilterTime(e.target.value)} />
+                    <input
+                        type="number"
+                        value={filterTime}
+                        onChange={(e) => setFilterTime(e.target.value)}
+                    />
                 </label>
             </div>
-            {filteredFoods.length > 0 ?
-                filteredFoods.map((el) => {
+            {filteredFoods.length > 0 ? (
+                filteredFoods.map((food) => {
                     return (
-                        <div className="food-item">
-
-                            <h2>{el.foodNname}</h2>
-                            <p>Type: {el.foodType}</p>
-                            <p>Delivery Time: {el.maxDdeliveryTime} minutes</p>
+                        <div className="food-item" key={food.foodName}>
+                            <div>
+                                <h2>{food.foodName}</h2>
+                                <p>Type: {food.foodType}</p>
+                                <p>Delivery Time: {food.maxDeliveryTime} minutes</p>
+                            </div>
                         </div>
-                    )
+                    );
                 })
-                : (
-                    <p>No matching foods found.</p>
-                )}
+            ) : (
+                <p>No matching foods found.</p>
+            )}
         </div>
     );
 }
